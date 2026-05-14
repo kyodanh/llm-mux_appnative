@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM-Mux Setup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wizard">
+  <div class="wizard-card">
+    <div class="wizard-logo">⚡</div>
+    <div class="wizard-title">LLM-Mux Manager</div>
+    <div class="wizard-sub">Set up your AI proxy in a few steps</div>
+
+    <!-- Step 1: Install -->
+    <div class="step active" id="step-install">
+      <div class="step-title">Install llm-mux</div>
+      <div class="step-desc">
+        llm-mux routes your Claude/Copilot/Gemini requests through a single local proxy.
+        We'll download <strong>v2.2.8</strong> (stable) now.
+      </div>
+      <button class="btn btn-primary full-btn" id="btn-install">Download &amp; Install</button>
+    </div>
+
+    <!-- Step 2: Progress -->
+    <div class="step" id="step-progress">
+      <div class="step-title">Downloading…</div>
+      <div class="step-desc">Please wait while llm-mux is downloaded and extracted.</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-label" id="progress-label">0%</div>
+    </div>
+
+    <!-- Step 3: Choose provider -->
+    <div class="step" id="step-provider">
+      <div class="step-title">Connect an account</div>
+      <div class="step-desc">Choose a provider to authenticate. A browser window will open for sign-in.</div>
+      <div class="provider-grid" id="provider-grid">
+        <div class="provider-card" data-provider="claude">
+          <div class="p-icon">🤖</div>
+          <div class="p-name">Claude</div>
+        </div>
+        <div class="provider-card" data-provider="copilot">
+          <div class="p-icon">🐙</div>
+          <div class="p-name">Copilot</div>
+        </div>
+        <div class="provider-card" data-provider="gemini">
+          <div class="p-icon">💎</div>
+          <div class="p-name">Gemini</div>
+        </div>
+      </div>
+      <button class="btn btn-primary full-btn" id="btn-login" disabled>Sign in</button>
+    </div>
+
+    <!-- Step 4: Logging in -->
+    <div class="step" id="step-login">
+      <div class="step-title">Waiting for authentication…</div>
+      <div class="step-desc">Complete sign-in in your browser, then come back here.</div>
+      <div class="login-log" id="login-log"></div>
+    </div>
+
+    <!-- Step 5: Done -->
+    <div class="step" id="step-done">
+      <div class="success-icon">✅</div>
+      <div class="step-title" style="text-align:center">All set!</div>
+      <div class="step-desc" style="text-align:center; margin-bottom:24px">
+        llm-mux is installed and authenticated. Opening dashboard…
+      </div>
+      <button class="btn btn-primary full-btn" id="btn-dashboard">Open Dashboard</button>
+    </div>
+
+    <!-- Error state -->
+    <div class="step" id="step-error">
+      <div class="step-title" style="color:var(--red)">Something went wrong</div>
+      <div class="step-desc" id="error-msg" style="color:var(--red)"></div>
+      <button class="btn btn-secondary full-btn" id="btn-retry" style="margin-top:8px">Try again</button>
+    </div>
+  </div>
+</div>
+<script src="setup.js"></script>
+</body>
+</html>

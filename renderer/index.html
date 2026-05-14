@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM-Mux Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="titlebar">LLM-Mux Manager</div>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-item active" data-page="dashboard">
+      <span class="icon">⚡</span> Dashboard
+    </div>
+    <div class="sidebar-item" data-page="accounts">
+      <span class="icon">👤</span> Accounts
+    </div>
+    <div class="sidebar-item" data-page="logs">
+      <span class="icon">📋</span> Logs
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- ── Dashboard page ─────────────────────────────────────── -->
+    <div id="page-dashboard">
+      <!-- Status card -->
+      <div class="status-card">
+        <div class="status-left">
+          <div class="status-dot unknown" id="status-dot"></div>
+          <div>
+            <div class="status-label" id="status-label">Connecting…</div>
+            <div class="status-meta" id="status-meta">port — · version —</div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-secondary" id="btn-restart">Restart</button>
+          <button class="btn btn-danger"    id="btn-stop">Stop</button>
+          <button class="btn btn-primary"   id="btn-start" style="display:none">Start</button>
+        </div>
+      </div>
+
+      <!-- Info grid -->
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-cell-label">Port</div>
+          <div class="info-cell-value" id="info-port">—</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Version</div>
+          <div class="info-cell-value" id="info-version">—</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Accounts</div>
+          <div class="info-cell-value" id="info-accounts">—</div>
+        </div>
+      </div>
+
+      <!-- Inline log panel -->
+      <div class="log-panel">
+        <div class="log-header">
+          <span>Live Logs <span id="log-mode-badge" style="font-size:11px;padding:2px 7px;border-radius:20px;margin-left:6px;background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)">errors only</span></span>
+          <div style="display:flex;gap:6px;align-items:center">
+            <button class="btn btn-secondary" id="btn-toggle-reqlog" style="padding:3px 10px;font-size:12px">Enable full logging</button>
+            <button class="btn btn-secondary" id="btn-clear-log"     style="padding:3px 10px;font-size:12px">Clear</button>
+          </div>
+        </div>
+        <div class="log-body" id="log-body" style="color:#94a3b8"></div>
+      </div>
+    </div>
+
+    <!-- ── Accounts page ──────────────────────────────────────── -->
+    <div id="page-accounts" style="display:none">
+      <div class="section-title">Connected Accounts</div>
+      <div class="account-list" id="account-list">
+        <div style="color:var(--muted);font-size:13px">No accounts found.</div>
+      </div>
+
+      <div class="section-title" style="margin-top:28px">Add Account</div>
+      <div class="add-account-row">
+        <button class="provider-btn" data-provider="claude">🤖 Claude</button>
+        <button class="provider-btn" data-provider="copilot">🐙 Copilot</button>
+        <button class="provider-btn" data-provider="gemini">💎 Gemini</button>
+      </div>
+      <div class="login-log" id="account-log" style="display:none"></div>
+    </div>
+
+    <!-- ── Logs page ──────────────────────────────────────────── -->
+    <div id="page-logs" style="display:none; height:calc(100vh - 38px - 48px)">
+      <div class="log-panel" style="height:100%">
+        <div class="log-header">
+          <span>Full Log Stream</span>
+          <button class="btn btn-secondary" id="btn-clear-log2" style="padding:3px 10px;font-size:12px">Clear</button>
+        </div>
+        <div class="log-body" id="log-body2"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
